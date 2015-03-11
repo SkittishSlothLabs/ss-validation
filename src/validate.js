@@ -2,6 +2,10 @@
 
 var ex = require('./exceptions');
 
+/** @class ValidationState
+ *  
+ *  Fluent validation interface.
+ */
 function ValidationState() {
     this._checkOnly = false;
     this._currentValue = null;
@@ -9,6 +13,11 @@ function ValidationState() {
 };
 
 Object.defineProperties(ValidationState.prototype, {
+    /**
+     * Indicates that validation is in 'check-only' mode -- track errors but don't throw.
+     * If this is `true` then errors are stored in an internal array.  If this is `false`
+     * then any failure along the chain throws an exception.
+     */
     "checkOnly": {
         get: function() {
             return this._checkOnly;
@@ -19,6 +28,9 @@ Object.defineProperties(ValidationState.prototype, {
         }
     },
     
+    /**
+     *  The current value being validated.
+     */
     "currentValue": {
         get: function() {
             return this._currentValue;
@@ -27,6 +39,10 @@ Object.defineProperties(ValidationState.prototype, {
             this._currentValue = val;
         }
     },
+    
+    /**
+     * Flags the validation stated as being in `checkOnly` mode.
+     */
     "check": {
         get: function() {
             this._checkOnly = true;
@@ -34,6 +50,10 @@ Object.defineProperties(ValidationState.prototype, {
         }
     },
     
+    /**
+     * Sets `checkOnly` mode to `false`, so that **any** failures in a validation method 
+     * called after this point result in an exception.
+     */
     "ensure": {
         get: function() {
             this._checkOnly = false;
@@ -79,6 +99,20 @@ Object.defineProperties(ValidationState.prototype, {
         }
     }
 });
+
+ValidationState.prototype.equals = function(val) {
+    var curVal = this.currentValue;
+    var error = (curVal != val);
+    if (error) {
+        if (this.checkOnly === true) {
+            this.errors.push("Specified values are not equal.");
+        } else {
+            throw new ex.ValuesNotEqualException();
+        }
+    }
+    
+    return this;
+};
 
 Object.seal(ValidationState);
 

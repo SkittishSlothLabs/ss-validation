@@ -164,4 +164,47 @@ describe("Validate", function() {
             done();
         });
     });
+    
+    describe("#equals", function() {
+       it("should throw an exception if passed a value that is not equal to the set value.", function(done) {
+           var val = "hello world";
+           var test = 1234;
+           var state  = null;
+           
+           should.throws(
+               function() {
+                   state = validate(val).equals(test);
+               },
+               exceptions.ValuesNotEqualException
+           );
+           
+           done();
+       });
+       
+       it("should not throw an exception if passed a value that is (loosely) equal to the set value.", function(done) {
+           var val = "hello world";
+           var test = "hello world";
+           var state  = null;
+           
+           should.doesNotThrow(
+               function() {
+                   state = validate(val).equals(test);
+               },
+               exceptions.ValuesNotEqualException
+           );
+           
+           val = "5";
+           test = 5;
+           
+           should.doesNotThrow(
+               function() {
+                   state = validate(val).equals(test);
+               },
+               exceptions.ValuesNotEqualException
+           );
+           
+           
+           done();
+       });
+    });
 });

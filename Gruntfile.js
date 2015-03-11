@@ -52,11 +52,6 @@ module.exports = function(grunt) {
 
         // Empties folders to start fresh
         clean: {
-            // dist: [
-            //     '.tmp',
-            //     '<%= dirs.build %>/{,*/}*',
-            //     '!<%= dirs.build %>/.git{,*/}*'
-            //   ]
             dist: {
                 files: [{
                     dot: true,
@@ -93,7 +88,7 @@ module.exports = function(grunt) {
                     debounceDelay: 250
                 },
                 files: ['Gruntfile.js', 'src/**/*.js', 'test/**/*.js'],
-                tasks: ['mochaTest']
+                tasks: ['default']
             }
         },
 
