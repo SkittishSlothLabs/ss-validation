@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/SkittishSlothLabs/ss-validation.git"
+    "url": "https://github.com/SlothLabs/ss-validation.git"
   },
   "keywords": [
     "validation",
@@ -18,9 +18,9 @@
   "author": "Matthew Cory",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/SkittishSlothLabs/ss-validation/issues"
+    "url": "https://github.com/SlothLabs/ss-validation/issues"
   },
-  "homepage": "https://github.com/SkittishSlothLabs/ss-validation",
+  "homepage": "https://github.com/SlothLabs/ss-validation",
   "devDependencies": {
     "browserify": "^9.0.3",
     "grunt": "^0.4.5",
@@ -33,6 +33,7 @@
     "jshint-stylish": "^1.0.1",
     "load-grunt-tasks": "^3.1.0",
     "mocha": "^2.1.0",
+    "releasebot": "^0.1.3",
     "should": "^5.1.0",
     "time-grunt": "^1.1.0",
     "uglify": "^0.1.1",

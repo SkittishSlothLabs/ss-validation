@@ -4,3 +4,10 @@ node_js:
   - 'iojs'
   - '0.12'
   - '0.10'
+deploy:
+  provider: releases
+  api_key: "90dd96ccf57383a550ec93175382374b3301d274"
+  file: "FILE TO UPLOAD"
+  skip_cleanup: true
+  on:
+    tags: true
